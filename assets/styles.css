@@ -1,0 +1,11 @@
+:root{
+    --primary: #00008B;
+    --secondary: #ADD8E6;
+    --pearl: #E2DFD2;
+    --black: #000000;
+    
+}
+
+body {
+    font-family: sans-serif;
+}
