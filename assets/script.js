@@ -28,7 +28,7 @@ function getApi() {
                     var iconCode = data.list[0].weather[0].icon
                     var iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`
                     var todayForecast = $(`
-                    <div class="card-body d-flex justify-content-center">
+                    <div class="card-body d-flex justify-content-between">
                         <h4 class="today">${data.city.name}</h4>
                         <img class="icon" src="${iconUrl}">
                         <p class="card-text weather">Temp:${data.list[0].main.temp}F°</p>
