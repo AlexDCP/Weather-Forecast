@@ -98,6 +98,6 @@ searchButton.addEventListener('click', function (event) {
     event.preventDefault();
     getApi();
     displaySearchedCities();
+    $('.todaysweather',).empty().append();
+    $('.fivedaycontainer').empty().append();
 });
-// function to run your fetch
-searchButton.addEventListener('click', getApi);
