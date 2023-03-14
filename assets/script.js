@@ -6,7 +6,7 @@ var searchButton = document.getElementById('startsearch');
 function getApi() {
     var searchInput = document.getElementById('citysearch').value;
     console.log(searchInput);
-    var queryUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + searchInput + "&limit=5&appid=" + apiKey;
+    var queryUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + searchInput + "&limit=5&appid=" + apiKey;
 
 
 
@@ -18,7 +18,7 @@ function getApi() {
         .then(function (data) {
             var longitude = data[0].lon;
             var latitude = data[0].lat;
-            var queryUrl2 = "http://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=" + apiKey;
+            var queryUrl2 = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&units=imperial&appid=" + apiKey;
             fetch(queryUrl2)
                 .then(function (response) {
                     return response.json();
