@@ -26,6 +26,7 @@ function getApi() {
                 .then(function (data) {
                     var iconCode = data.list[0].weather[0].icon
                     var iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`
+                    //this is the template literal creating the current day forecast 
                     var todayForecast = $(`
                     <div class="card-body d-flex justify-content-between">
                         <h4 class="today">Today's Weather in:${data.city.name}</h4>
@@ -37,6 +38,7 @@ function getApi() {
                 `)
                     $('.todaysweather').append(todayForecast);
                     console.log(data);
+                    //filter is used to target the days by noon to then create and array that we can pull info on each day in the five day forecast
                     var fiveDayArray = data.list.filter(day => day.dt_txt.includes('12:00:00'));
                     console.log(fiveDayArray);
                     for (var i = 0; i < fiveDayArray.length; i++) {
@@ -46,7 +48,7 @@ function getApi() {
                         var iconPic = `https://openweathermap.org/img/w/${iconCode}.png`
                         console.log(fiveDayArray[i].weather)
 
-
+                        //this is the template literal creating the five day forecast    
                         var fiveDayCard = $(`
                         <div class="card col-2 m-2 w-22 bg-primary">
                             <div class="card-body">
@@ -65,6 +67,7 @@ function getApi() {
 
                 })
         });
+    // this is where the local storage gets saved in 'searchedCities' making sure not to store the data if it already present with the if statement and !
     var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
     if (!searchedCities.includes(searchInput)) {
         searchedCities.push(searchInput);
@@ -72,7 +75,7 @@ function getApi() {
     }
 
 };
-
+// the || stands for or, showing if it is an empty object it will not run.
 function displaySearchedCities() {
     var searchedCities = JSON.parse(localStorage.getItem('searchedCities')) || [];
     var searchedCityContainer = document.getElementById('searched-cities');
@@ -82,6 +85,7 @@ function displaySearchedCities() {
         cityButton.innerHTML = searchedCities[i];
         cityButton.classList.add('btn', 'btn-primary', 'm-2');
         cityButton.addEventListener('click', function (event) {
+            //not sure if the append is needed, however this is used to clear the html for any new button clicks
             $('.todaysweather',).empty().append();
             $('.fivedaycontainer').empty().append();
 
@@ -98,6 +102,7 @@ searchButton.addEventListener('click', function (event) {
     event.preventDefault();
     getApi();
     displaySearchedCities();
+    // this is to clear the html before a new search finishes
     $('.todaysweather',).empty().append();
     $('.fivedaycontainer').empty().append();
 });
